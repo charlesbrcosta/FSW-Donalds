@@ -23,7 +23,18 @@ const RestaurantMenuPage = async ({ params, searchParams  }: RestaurantMenuPageP
     if (!isConsumptionMethodValid(ConsumptionMethod)) {
         return notFound();
     }
-    const restaurant = await db.restaurant.findUnique({ where: { slug } });
+
+    const restaurant = await db.restaurant.findUnique({ 
+        where: { slug }, 
+        include: { 
+            menuCategories: {
+                include: { products: true }
+            },
+        },
+    });
+
+    console.log(restaurant?.menuCategories)
+    
     if (!restaurant) {
         return notFound();
     }
