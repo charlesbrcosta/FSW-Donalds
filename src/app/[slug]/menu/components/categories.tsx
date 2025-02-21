@@ -1,11 +1,11 @@
 "use client"
 import { Prisma } from "@prisma/client";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Clock1Icon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { ScrollBar } from "@/components/ui/scroll-area";
 
 import Products from "./products";
