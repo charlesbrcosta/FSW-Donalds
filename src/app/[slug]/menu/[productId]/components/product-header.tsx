@@ -36,7 +36,8 @@ const ProductHeader = ({ product }: ProductHeaderProps) => {
                 className="absolute top-4 right-4 rounded-full z-50"
             >
                 <ScrollTextIcon />
-            </Button>                
+            </Button>        
+                  
         </div>
      );
 }
