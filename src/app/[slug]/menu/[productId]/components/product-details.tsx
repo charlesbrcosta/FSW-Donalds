@@ -88,7 +88,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
                             </Button>
                         </div>
                     </div> 
-                    <ScrollArea className="h-full">
+                    <ScrollArea className="h-full pb-12">
                         {/* Sobre */}
                         <div className="mt-6 space-y-3">
                             <h4 className="font-semibold">Sobre</h4>
@@ -100,9 +100,10 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
                                 <ChefHatIcon size={18}/>
                                 <h4 className="font-semibold">Ingredientes</h4>
                             </div>
-                            <ul className="list-disc px-5 text-sm text-muted-foreground">
+                            <ul className="list-disc px-5 text-sm text-muted-foreground pb-12">
                                 {product.ingredients.map((ingrendient) => (
                                     <li key={ingrendient}>{ingrendient}</li>
+                                    
                                 ))}
                             </ul>
                         </div>   
