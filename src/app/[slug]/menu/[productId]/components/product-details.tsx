@@ -26,20 +26,24 @@ interface ProductDetailsProps {
 }
 
 const ProductDetails = ({ product }: ProductDetailsProps) => {
-    const { toggleCart } = useCart();
-    const [quantify, setQuantify] = useState<number>(1);
-    const handleDescreaseQuantify = () => {
-        setQuantify((prev) => {
+    const { toggleCart, addProduct } = useCart();
+    const [quantity, setQuantity] = useState<number>(1);
+    const handleDescreaseQuantity = () => {
+        setQuantity((prev) => {
             if (prev === 1) {
                 return 1;
             }
             return prev - 1;
         });
     }
-    const handleIncreaseQuantify = () => {
-        setQuantify((prev) => prev +1)
+    const handleIncreaseQuantity = () => {
+        setQuantity((prev) => prev +1)
     }
     const handleAddToCart = () => {
+        addProduct({
+            ...product,
+            quantity,
+        });
         toggleCart();
     }
     return ( 
@@ -70,15 +74,15 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
                             <Button 
                                 variant="outline" 
                                 className="h-8 w-8 rounded-xl"
-                                onClick={handleDescreaseQuantify}
+                                onClick={handleDescreaseQuantity}
                             >
                                 <ChevronLeftIcon />
                             </Button>
-                            <p className="w-4">{quantify}</p>
+                            <p className="w-4">{quantity}</p>
                             <Button 
                                 variant="destructive" 
                                 className="h-8 w-8 rounded-xl"
-                                onClick={handleIncreaseQuantify}
+                                onClick={handleIncreaseQuantity}
                             >
                                 <ChevronRightIcon />
                             </Button>
