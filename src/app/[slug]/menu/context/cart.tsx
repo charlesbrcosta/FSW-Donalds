@@ -65,11 +65,19 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
                     return prevProduct;
                 }
 
-                if (prevProduct.quantity === 1) {
+                const updateProdut = { ...prevProduct, quantity: prevProduct.quantity -1 }
+                if (updateProdut.quantity < 1) {
+                    return null;
+                }
+                return updateProdut;
+
+                /* if (prevProduct.quantity === 1) {
                     return prevProduct;                    
                 }
-                return { ...prevProduct, quantity: prevProduct.quantity - 1 }
-            });
+                return { ...prevProduct, quantity: prevProduct.quantity - 1 } */
+                return updateProdut;
+            })
+            .filter(prevProduct => prevProduct !== null);
         });
     }
     const increaseProductQuantity = (productId: string) => {
