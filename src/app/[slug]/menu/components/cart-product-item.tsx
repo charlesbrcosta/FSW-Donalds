@@ -12,9 +12,13 @@ interface CartItemProps {
 }
 
 export const CartProductItem = ({product}: CartItemProps) => {
-    const { decreaseProductQuantity } = useCart();
+    const { decreaseProductQuantity, increaseProductQuantity } = useCart();
+
     const handleDecreaseProductQuantity =  () => {
         decreaseProductQuantity(product.id);
+    }
+    const handleIncreaseProductQuantity = () => {
+        increaseProductQuantity(product.id);
     }
     return ( 
         <div className="flex items-center justify-between">
@@ -36,7 +40,11 @@ export const CartProductItem = ({product}: CartItemProps) => {
                             <ChevronLeftIcon />
                         </Button>
                         <p className="w-7 text-xs">{product.quantity}</p>
-                        <Button className="rounded-lg h-7 w-7" variant="destructive">
+                        <Button 
+                            className="rounded-lg h-7 w-7" 
+                            variant="destructive"
+                            onClick={handleIncreaseProductQuantity}
+                        >
                             <ChevronRightIcon />
                         </Button> 
                     </div>
