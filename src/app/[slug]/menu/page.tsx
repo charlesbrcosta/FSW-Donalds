@@ -8,19 +8,19 @@ import RestaurantHeader from "./components/header";
 
 interface RestaurantMenuPageProps {
     params: Promise<{ slug: string }>;
-    searchParams: Promise<{ ConsumptionMethod: string }>;
+    searchParams: Promise<{ consumptionMethod: string }>;
 }
 
-const isConsumptionMethodValid = (ConsumptionMethod: string) => {
-    return ["DINE_IN", "TAKEAWAY"].includes(ConsumptionMethod.toUpperCase());
+const isConsumptionMethodValid = (consumptionMethod: string) => {
+    return ["DINE_IN", "TAKEAWAY"].includes(consumptionMethod.toUpperCase());
 };
 
 const RestaurantMenuPage = async ({ params, searchParams  }: RestaurantMenuPageProps) => {
     
     const {slug} = await params;   
-    const {ConsumptionMethod} =  await searchParams;
+    const {consumptionMethod} =  await searchParams;
 
-    if (!isConsumptionMethodValid(ConsumptionMethod)) {
+    if (!isConsumptionMethodValid(consumptionMethod)) {
         return notFound();
     }
 

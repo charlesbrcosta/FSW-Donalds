@@ -27,7 +27,7 @@ const ConsumptionMethodOption = ({ slug, imageUrl, imageAlt, buttonText, option,
                     />
                 </div>
                 <Button variant="secondary" className="roudend-full" asChild>
-                    <Link href={`/${slug}/menu?ConsumptionMethod=${option}`}>
+                    <Link href={`/${slug}/menu?consumptionMethod=${option}`}>
                         {buttonText}
                     </Link>
                 </Button>
