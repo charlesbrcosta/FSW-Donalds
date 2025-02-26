@@ -73,8 +73,8 @@ const onSubmit = async (data: FormSchema) => {
                 slug,
             });
             onOpenChange(false);
-            toast.success("Pedido finalizado com sucesso!");
-        });
+            toast.success("Pedido finalizado com sucesso!");             
+        });  
     } catch (error) {
         console.error(error);
     }

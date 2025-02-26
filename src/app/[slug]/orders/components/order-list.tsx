@@ -10,6 +10,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { formatCurrency } from "@/helpers/format-currency";
 
+import { useCart } from "../../menu/context/cart";
+
 interface OrderListProps {
     orders: Array<
         Prisma.OrderGetPayload<{
@@ -39,7 +41,11 @@ const getStatusLabel = (status: OrderStatus) => {
 
 const OrderList = ({orders}: OrderListProps) => {
     const router = useRouter();
-    const handleBackClick = () => router.back();
+    const { cleanBag } = useCart(); 
+    const handleBackClick = () => {
+        cleanBag();
+        router.push("/fsw-donalds");
+    };
     return ( 
         <div className="space-y-6 p-6">
             <Button size="icon" variant="secondary" className="rounded-full" onClick={handleBackClick}>
