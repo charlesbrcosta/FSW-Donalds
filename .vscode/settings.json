@@ -12,5 +12,7 @@
     ],
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": "explicit"
-    }
+    },
+    "mobile-preview.device": "iPhone 15 Pro Max",
+    "workbench.editor.enablePreview": false
   }

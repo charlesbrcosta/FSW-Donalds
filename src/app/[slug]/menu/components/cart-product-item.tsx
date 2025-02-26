@@ -54,7 +54,7 @@ export const CartProductItem = ({product}: CartItemProps) => {
                 </div>
             </div>
             <Button 
-                className="h-7 w-7 rounded-lg" 
+                className="h-7 w-7 rounded-lg flex items-center justify-center" 
                 variant="outline"
                 onClick={handleRemoveProduct}
             >
