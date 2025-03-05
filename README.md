@@ -1,14 +1,12 @@
 # 🍔 FSW-Donalds - Sistema de Pedidos (Restaurante)
 
-
 ## 🎯 Sobre o Projeto
 
-Desenvolvido para Dispositivos Móveis: Este sistema foi projetado como uma aplicação web, mas otimizado para experiência mobile-first. Embora tenha sido inicialmente pensado para restaurantes de fast food, ele é completamente adaptável a qualquer tipo de estabelecimento gastronômico. O sistema permite que os clientes escolham seus produtos, adicionem à sacola, visualizem detalhes, finalizem o pedido e acompanhem seu status.
-
+Desenvolvido para Dispositivos Móveis: Este sistema foi projetado como uma aplicação web, mas otimizado para experiência mobile-first. Embora tenha sido inicialmente pensado para restaurantes de fast food, ele é completamente adaptável a qualquer tipo de estabelecimento gastronômico. O sistema permite que os clientes escolham seus produtos, adicionem à sacola, visualizem detalhes o produto, finalize o pedido com a forma de pagamentão cartão e acompanhem os status.
 
 ## 🔍 Tecnologias Utilizadas
 
-[![My Skills](https://skillicons.dev/icons?i=react,typescript,tailwind,nextjs,postgres,git,github&perline=10)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=react,typescript,tailwind,nextjs,postgres,git,github,figma&perline=10)](https://skillicons.dev)
 
 🖥️ Frontend: React, Next.js, TailwindCSS, Typescript
 
@@ -16,7 +14,7 @@ Desenvolvido para Dispositivos Móveis: Este sistema foi projetado como uma apli
 
 🗄️ Banco de Dados: PostgreSQL (Neon Serverless)
 
-🛠️ Outras Ferramentas: Lucide, Context API
+🛠️ Outras Ferramentas: Lucide, Context API, Figma
 
 📌 Versionamento: Git e GitHub seguindo o padrão SemVer (major, minor, patch)
 
@@ -24,9 +22,9 @@ Desenvolvido para Dispositivos Móveis: Este sistema foi projetado como uma apli
 
 🔐 Gerenciamento de Variáveis de Ambiente: .env com link gerado pelo Neon
 
+🔗 Forma de pagamento: cartão (integração do stripe com webhook)
 
 ## ⚡ Funcionalidades
-
 
 🔹 Escolha do tipo de pedido: Comer no local ou levar
 
@@ -40,11 +38,11 @@ Desenvolvido para Dispositivos Móveis: Este sistema foi projetado como uma apli
 
 🔹 Rodapé dinâmico no menu: Exibe a quantidade total de itens e acesso rápido à sacola
 
-🔹 Finalização do pedido: Inserção do nome e CPF com validação
+🔹 Finalização do pedido: Inserção do nome e CPF com validação e forma de pagamento cartão (nesta versão do stripe não tem pagamento via pix)
 
 🔹 Listagem de pedidos: Organização por CPF, permitindo múltiplos pedidos na mesma lista
 
-🔹 Consulta de status do pedido: Pendente, em preparo ou finalizado
+🔹 Consulta de status do pedido: Pendente, em preparo, finalizado, pagamento confirmado ou pagamento falhou
 
 
 ## 📂 Estrutura do projeto
@@ -65,6 +63,8 @@ O projeto foi desenvolvido utilizando os seguintes conceitos e padrões:
 
 🔹 `/global.css` → Estilos globais e configurações do Tailwind CSS.
 
+🔹 `/api/webhooks/stripe/route.ts` → Integração do stripe com webhook.
+
 ```bash
 fsw-donalds/
 ├── prisma
@@ -76,7 +76,8 @@ fsw-donalds/
 │   └── takeaway.png 
 ├── README.md
 ├── src
-│   ├── app
+│   └──  app
+│        └── api/webhooks/stripe
 │   ├── components
 │   ├── Data
 │   ├── helpers
@@ -98,28 +99,31 @@ fsw-donalds/
 Abaixo estão algumas capturas de tela do sistema em funcionamento:
 
 ### | Tela Inicial | 
-![Tela Inicial](./public/screenshots/telainicial.png) 
+![Tela Inicial](./public/screenshots/1-homeScreen.png) 
 
-### | Menu de Produtos |
-![Menu de Produtos](./public/screenshots/menu.png)
+### | Menu dos Produtos |
+![Menu de Produtos](./public/screenshots/2-menu.png)
 
 ### | Detalhes do Produto |
-![Detalhes do Produto](./public/screenshots/detalhesdoitem.png) 
+![Detalhes do Produto](./public/screenshots/3-productDetails.png) 
 
 ### | Sacola de Compras |
-![Sacola de Compras](./public/screenshots/sacola.png)
+![Sacola de Compras](./public/screenshots/4-bag.png)
 
 ### | Finalização do Pedido |    
-![Finalização do Pedido](./public/screenshots/finalizar.png) 
+![Finalização do Pedido](./public/screenshots/5-finalizeOrder.png) 
 
-### | Lista de Pedidos |
-![Lista de Pedidos](./public/screenshots/telapedido.png)
+### | Pagamento do pedido |
+![Lista de Pedidos](./public/screenshots/6-paymentScreen.png)
 
-### | Menu com Item na Sacola |   
-![Menu com Item na Sacola](./public/screenshots/menucomitemnasacola.png) 
+### | Lista dos pedidos |
+![Consulta de Pedido](./public/screenshots/7-orderCompleted.png)
 
-### | Consulta de Pedido |
-![Consulta de Pedido](./public/screenshots/consultapedido.png)
+### | Menu com item na sacola |
+![Consulta de Pedido](./public/screenshots/8-menuWithItemInBag.png)
+
+### | Visualizar pedido|
+![Consulta de Pedido](./public/screenshots/9-showOrders.png)
 
 
 ## :globe_with_meridians: Acesso ao Deploy do projeto
@@ -128,7 +132,7 @@ Abaixo estão algumas capturas de tela do sistema em funcionamento:
 
 O projeto está disponível na Vercel. Você pode acessá-lo através do seguinte link: 
 
-[FSW-Donalds.](https://fsw-donalds-git-main-charlesbrcostas-projects.vercel.app/fsw-donalds)
+Clique aqui para acessar o projeto → [FSW-Donalds](https://fsw-donalds-brown.vercel.app/fsw-donalds)
 
 
 ## 📌 Controle de Versões
@@ -163,13 +167,19 @@ O desenvolvimento do sistema seguiu um controle de versões estruturado, garanti
 
 🔹 `v1.2.3` - Ajustes finais: correção no alinhamento dos ícones e limpeza automática da sacola após a conclusão do pedido.
 
+🔹 `v1.2.4` - Adicionado novos status no esquema do prisma.
+
+🔹 `v1.3.0` - Adicionado forma de pagamento e integração do stripe com webhook.
+
+🔹 `v1.4.0` - Implementada funcionalidade para tratar pagamentos com falha.
+
 
 ## 🚀 Desenvolvimento
 
 Este projeto foi desenvolvido durante a Imersão Fullstack Week, aplicando as melhores práticas e conceitos modernos de desenvolvimento fullstack.
 
 
-## 🚀 Como Rodar o Projeto
+## 🚀 Como Rodar o Projeto Local
 
 ### :dvd: Passo a Passo
 
@@ -185,13 +195,65 @@ Este projeto foi desenvolvido durante a Imersão Fullstack Week, aplicando as me
 
 3. Configure o banco de dados:
 
-- Crie uma conta na neon serverless postgresql e o banco dados
+- Crie uma conta na Neon Serverless PostgreSQL (plano gratuito) e crie seu banco de dados.
 
-- Configure as variáveis de ambiente no arquivo .env adicionando o link do banco de dados gerado na Neon.
+    [Neon Serverles postgresql](https://neon.tech/)
 
-4. Inicie o servidor de desenvolvimento:
+4. Configure o stripe:
+
+- Crie uma conta gratuita no Stripe (consulte a documentação):
+
+    [Documentação](https://docs.stripe.com/?locale=pt-BR)
+
+    [Stripe](https://stripe.com/br?utm_campaign=AMER_BR_pt_Google_Search_Brand_Brand_EXA-15928713321&utm_medium=cpc&utm_source=google&ad_content=575905716902&utm_term=stripe&utm_matchtype=e&utm_adposition=&utm_device=c&gad_source=1&gclid=CjwKCAiAiaC-BhBEEiwAjY99qC9VYbXdteRdY9ZvprMyxqWKebRBtS5Tu0dBNx_apjUWU_XB7UI-CRoCcKoQAvD_BwE)
+
+- Após criar sua conta, siga os passos de configuração do Stripe para o ambiente de desenvolvimento (Windows, MacOS ou Linux).
+
+- No Stripe, adicione uma nova conta no ambiente de teste e gere as chaves necessárias: chave pública, chave secreta e chave do webhook. Essas chaves são essenciais para a funcionalidade do sistema de pagamento.
+
+5. Configure as variáveis de ambiente: 
+
+- Crie um arquivo `.env` na raiz do projeto, adicione o link do banco de dados gerado na Neon, a chave secreta, a chave pública e a chave do webhook do Stripe, como mostrado abaixo:
+    ```bash
+    DATABASE_URL="Adicione aqui o link do banco de dados"
+
+    STRIPE_SECRET_KEY="Adicione aqui a chave secreta do Stripe"
+
+    NEXT_PUBLIC_STRIPE_PUBLIC_KEY="Adicione aqui a chave pública do Stripe"
+
+    STRIPE_WEBHOOK_SECRET_KEY="Adicione aqui a chave do webhook"
+
+6. Execute as migrações do Prisma:
+
+- Carregue o schema do banco de dados na Neon com o comando abaixo:
+    ```bash
+    npx prisma migrate dev
+
+- Isso irá aplicar as migrações e configurar o banco de dados de acordo com o schema.
+
+7. Popule o banco de dados com dados iniciais:
+
+- Após a migração, use o comando abaixo para popular o banco de dados com dados do restaurante, produtos e categorias do menu a partir do arquivo seed.ts:
+    ```bash
+    npx prisma db seed
+
+- Isso irá adicionar as informações pré-cadastradas para o funcionamento do sistema.
+
+8. Inicie o servidor de desenvolvimento:
     ```bash
     npm run dev
+
+9. Inicie o stripe:
+
+- No terminal, execute o comando para fazer login no Stripe:
+    ```bash
+    stripe login
+
+- Após executar o stripe login, você será redirecionado para a autenticação da sua conta (em ambiente de teste ou produção).
+
+- Depois de autenticado, use o seguinte comando para executar o webhook no Stripe, substituindo na URL a porta de sua preferência:
+    ```bash
+    stripe listen --forward-to http://localhost:3000/api/webhooks/stripe
     
 ## :handshake: Contribuição
 
