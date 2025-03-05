@@ -20,7 +20,7 @@ import {
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-import { isValidCpf, removeCpfPunctuation } from "../../menu/herlps/cpf";
+import { isValidCpf, removeCpfPunctuation } from "../../menu/helpers/cpf";
   
 
 const formSchema = z.object({
