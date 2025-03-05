@@ -73,15 +73,7 @@ const onSubmit = async (data: FormSchema) => {
                 products,
                 slug,
             });
-            startTransition( async () => {
-                /* const { sessionId } = await createStripeCheckout({ 
-                    products, 
-                    orderId: order.id,
-                    slug,
-                    consumptionMethod,
-                    cpf: data.cpf,
-                }); */
-                
+            startTransition( async () => {                
                 const  response = await createStripeCheckout({
                     products, 
                     orderId: order.id,
@@ -101,10 +93,6 @@ const onSubmit = async (data: FormSchema) => {
                 stripe?.redirectToCheckout({
                     sessionId: response.sessionId,
                 });
-
-               /*stripe?.redirectToCheckout({
-                    sessionId: sessionId,
-                });  */ 
             });     
         });  
     } catch (error) {       
